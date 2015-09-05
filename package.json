@@ -1,9 +1,9 @@
 {
-  "name": "gulp-nodeunit",
+  "name": "gulp-summary",
   "version": "0.0.1",
-  "description": "Runs nodeunit on files.",
+  "description": "Collects filenames and runs a callback",
   "license": "MIT",
-  "repository": "shadowmint/gulp-nodeunit",
+  "repository": "shadowmint/gulp-summary",
   "engines": {
     "node": ">=0.10.0"
   },

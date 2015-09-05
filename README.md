@@ -1,23 +1,71 @@
-# gulp-nodeunint
+# gulp-summary
 
-Runs the console node unit runner on test files.
+Collects filenames without processing the files and runs a callback to
+handle the list of files.
 
-## Why?
+This is particularly useful for generating client side script bundles and
+other similar tasks where its tedious to manually write a list of imports
+like:
 
-...because the other node unit runners dont work with watch.
+```
+import * as foo from './plugins/foo';
+import * as foo1 from './plugins/foo1';
+import * as foo2 from './plugins/foo2';
+import * as foo3 from './plugins/foo3';
+import * as foo4 from './plugins/foo4';
 
-This task will not trigger random errors during the pipeline
-and execution of tests when combined correctly with gulp-plumber.
+...
+
+app.register_plugin(foo);
+app.register_plugin(foo1);
+app.register_plugin(foo2);
+app.register_plugin(foo3);
+app.register_plugin(foo4);
+```
 
 ## Install
 
 ```
-$ npm install --save-dev shadowmint/gulp-nodeunit#0.0.2
+$ npm install --save-dev shadowmint/gulp-summary#0.0.1
 ```
 
 ## Usage
 
-See the demo/ folder for a usage example using gulp-plumber and gulp-babel.
+```
+import gulp from 'gulp';
+import ejs from 'ejs';
+import summary from '..';
+
+gulp.task('default', function() {
+  return gulp.src('./src/**/*.js')
+    .pipe(summary({
+      filename: "out.txt",
+      basePath: "./src",
+      handler: (v) => {
+        return ejs.render(`
+          <% for (var i = 0; i < data.length; ++i) { -%>
+            <%= data[i] %>
+          <% } -%>`, { data: v });
+      }
+    }))
+    .pipe(gulp.dest('./output'));
+});
+```
+
+### filename
+
+The output filename.
+
+### handler
+
+A function that takes an array of paths to matched files, and returns a
+string to output once the stream is complete.
+
+Notice that the objects in the array are paths, not File objects.
+
+### basePath
+
+This is prefix removed from the array of paths returned to the handler.
 
 ## License
 
