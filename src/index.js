@@ -25,7 +25,6 @@ class GulpPlugin extends Plugin {
 
     // Resolve path for abs helpers
     this.options.basePath = path.resolve(this.options.basePath);
-    console.log(this.options.basePath);
   }
 
   handle_file(file, enc) {
