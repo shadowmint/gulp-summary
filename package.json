@@ -1,6 +1,6 @@
 {
   "name": "gulp-summary",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Collects filenames and runs a callback",
   "license": "MIT",
   "repository": "shadowmint/gulp-summary",
@@ -15,9 +15,8 @@
     "gulpplugin"
   ],
   "dependencies": {
-    "buffertools": "^2.1.2",
     "gulp-nodeunit": "shadowmint/gulp-nodeunit",
-    "gulp-tools": "git://github.com/shadowmint/gulp-tools.git",
+    "gulp-tools": "git://github.com/shadowmint/gulp-tools.git#0.0.5",
     "gulp-util": "^3.0.6",
     "readable-stream": "^2.0.2",
     "through2": "^0.6.1",
